@@ -119,7 +119,7 @@ const Other = () => {
         <>
           <button
             onClick={() => setPopupHandler("Add")}
-            className="bg-slate-200 px-2 py-1 rounded font-Montserrat font-semibold text-sm mb-5"
+            className="bg-slate-300 px-2 py-1 rounded font-Montserrat font-semibold text-sm mb-5 shadow-sm hover:shadow-md hover:shadow-slate-400 ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300"
           >
             Add Link
           </button>

@@ -253,13 +253,13 @@ const Dashboard = () => {
             </ul>
           </div>
           {/* Main Dashboard Section */}
-          <div className="rounded-xl shadow-md md:h-[75vh] w-full md:w-[56%] flex justify-start items-center flex-col px-4 md:px-6 bg-white pb-4">
+          <div className="rounded-xl shadow-md md:h-[77vh] w-full md:w-[56%] flex justify-start items-center flex-col px-4 md:px-6 bg-white pb-4">
             <ul className="flex justify-evenly items-center my-4 w-full font-Montserrat font-medium text-base">
               <li
                 onClick={() => setMenu("profile")}
                 className={`${
                   menu === "profile"
-                    ? "bg-slate-950 text-slate-50"
+                    ? "bg-slate-950 text-slate-50 shadow-lg shadow-slate-400/50"
                     : "text-slate-950 hover:bg-slate-200 ease-linear duration-100 transition-all hover:ease-linear hover:duration-100 hover:transition-all select-none"
                 } px-2 py-1 md:py-[6px] rounded-lg text-[14px] md:text-sm w-full text-center mx-2 md:mx-5 cursor-pointer`}
               >
@@ -269,7 +269,7 @@ const Dashboard = () => {
                 onClick={() => setMenu("social")}
                 className={`${
                   menu === "social"
-                    ? "bg-slate-950 text-slate-50"
+                    ? "bg-slate-950 text-slate-50 shadow-lg shadow-slate-400/50"
                     : "text-slate-950 hover:bg-slate-200 ease-linear duration-100 transition-all hover:ease-linear hover:duration-100 hover:transition-all select-none"
                 } px-2 py-1 md:py-[6px] rounded-lg text-[14px] md:text-sm w-full text-center mx-2 md:mx-5 cursor-pointer`}
               >
@@ -279,7 +279,7 @@ const Dashboard = () => {
                 onClick={() => setMenu("other")}
                 className={`${
                   menu === "other"
-                    ? "bg-slate-950 text-slate-50"
+                    ? "bg-slate-950 text-slate-50 shadow-lg shadow-slate-400/50"
                     : "text-slate-950 hover:bg-slate-200 ease-linear duration-100 transition-all hover:ease-linear hover:duration-100 hover:transition-all select-none"
                 } px-2 py-1 md:py-[6px] rounded-lg text-[14px] md:text-sm w-full text-center mx-2 md:mx-5 cursor-pointer`}
               >
@@ -289,7 +289,7 @@ const Dashboard = () => {
                 onClick={() => setMenu("themes")}
                 className={`${
                   menu === "themes"
-                    ? "bg-slate-950 text-slate-50"
+                    ? "bg-slate-950 text-slate-50 shadow-lg shadow-slate-400/50"
                     : "text-slate-950 hover:bg-slate-200 ease-linear duration-100 transition-all hover:ease-linear hover:duration-100 hover:transition-all select-none"
                 } px-2 py-1 md:py-[6px] rounded-lg text-[14px] md:text-sm w-full text-center mx-2 md:mx-5 cursor-pointer`}
               >

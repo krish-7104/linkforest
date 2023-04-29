@@ -103,7 +103,7 @@ const Index = () => {
           >
             {!login && (
               <button
-                className="bg-slate-950 font-medium text-slate-50 flex justify-center items-center font-Montserrat px-6 py-3 rounded mx-auto mb-6 tracking-wide text-[18px]"
+                className="text-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 hover:shadow-lg hover:shadow-emerald-600/50 bg-gradient-to-tr from-emerald-600 to-emerald-400 shadow-md shadow-emerald-400/50 font-semibold"
                 onClick={googleLoginEventHandler}
               >
                 Create Yours Now!
@@ -111,7 +111,7 @@ const Index = () => {
             )}
             {login && (
               <button
-                className="bg-slate-950 font-medium text-slate-50 flex justify-center items-center font-Montserrat px-6 py-3 rounded mx-auto mt-6 tracking-wide text-[18px]"
+                className="text-slate-50 bg-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 hover:shadow-lg hover:shadow-slate-800/50 shadow-md shadow-slate-700/50 font-semibold"
                 onClick={() => navigate("/dashboard")}
               >
                 Go To Dashboard

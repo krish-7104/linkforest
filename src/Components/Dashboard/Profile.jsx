@@ -207,7 +207,7 @@ const Profile = () => {
         </form>
       </div>
       <button
-        className="bg-emerald-400 text-slate-950 font-Montserrat px-2 md:px-3 py-2 text-sm md:text-base font-semibold rounded my-4"
+        className="text-slate-950 font-Montserrat px-2 md:px-3 py-2 text-sm md:text-base font-semibold  my-4 ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 hover:shadow-lg hover:shadow-emerald-600/50 bg-gradient-to-tr from-emerald-500 to-emerald-300 shadow-md shadow-emerald-400/50 rounded-md"
         onClick={updateValueHandler}
       >
         Update Profile
