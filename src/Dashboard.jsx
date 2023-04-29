@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
 import { HashLoader } from "react-spinners";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { userContext } from "./Contexts/userContext";
 import { auth, db } from "./backend/firebaseConfig";
@@ -59,14 +59,37 @@ const Dashboard = () => {
             ...docSnap.data().socialLinks,
           },
           customTheme: {
-            ...docSnap.data().customTheme,
+            ...(docSnap.data().customTheme
+              ? docSnap.data().customTheme
+              : {
+                  background: "#ffffff",
+                  textColor: "#000",
+                  linkBackground: "#e2e8f0",
+                  linkColor: "#000",
+                }),
           },
           websites: {
             ...docSnap.data().websites,
           },
-          themeType: docSnap.data().themeType,
-          theme: docSnap.data().theme,
+          themeType: docSnap.data().themeType
+            ? docSnap.data().themeType
+            : "default",
+          theme: docSnap.data().theme ? docSnap.data().theme : "Default",
         });
+        if (!docSnap.data().themeType || !docSnap.data().customTheme) {
+          const updateRef = doc(db, "Link Forests", docSnap.id);
+          await updateDoc(updateRef, {
+            customTheme: {
+              background: "#ffffff",
+              textColor: "#000",
+              linkBackground: "#e2e8f0",
+              linkColor: "#000",
+            },
+            theme: "Default",
+            themeType: "default",
+            updatedTime: serverTimestamp(),
+          });
+        }
       } else {
         navigate("/username", { state: { type: "new" } });
       }
