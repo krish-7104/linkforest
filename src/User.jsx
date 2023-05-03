@@ -129,9 +129,7 @@ const UserLink = () => {
               color: `${data?.customTheme?.textColor.toString(16)}`,
             }}
           >
-            {data.description
-              ? data?.description
-              : `Under Construction Profile 🚧`}
+            {data?.description}
           </p>
           <div className="flex justify-evenly items-center gap-4 mt-5">
             {data?.socialLinks?.facebook && (
