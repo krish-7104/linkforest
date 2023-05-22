@@ -30,7 +30,6 @@ const Other = () => {
       updatedTime: serverTimestamp(),
     });
     toast.dismiss();
-    console.log(contextData.data.socialLinks);
     toast.success(message);
   };
   const linkUpHandler = (id) => {
@@ -109,7 +108,13 @@ const Other = () => {
 
   const deleteWebsiteHandler = () => {
     let newObject = { ...contextData.data.websites };
-    delete newObject[website.index];
+    for (let i = website.index; i < Object.keys(newObject).length; i++) {
+      if (i + 1 < Object.keys(newObject).length) {
+        const element = Object.keys(newObject)[i + 1];
+        newObject[i] = newObject[element];
+      }
+    }
+    delete newObject[Object.keys(newObject).length - 1];
     updateValueHandler(newObject, "Website Deleted!");
     resetPopupHandler();
   };
@@ -140,7 +145,7 @@ const Other = () => {
                     {contextData.data.websites[link].link}
                   </p>
                 </div>
-                {/* <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center">
                   <span
                     className={
                       index === 0
@@ -162,7 +167,7 @@ const Other = () => {
                   >
                     <BsCaretDown />
                   </span>
-                </div> */}
+                </div>
               </div>
             ))}
         </>

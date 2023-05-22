@@ -97,8 +97,6 @@ const Dashboard = () => {
     };
   }, []);
 
-  console.log(contextData.data.customTheme);
-
   return (
     <div className="h-[100vh] w-full bg-slate-100">
       {loading && (
