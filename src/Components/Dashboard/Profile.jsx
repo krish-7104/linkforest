@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { userContext } from "../../Contexts/userContext";
 import { db, storage } from "../../backend/firebaseConfig";
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";

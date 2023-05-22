@@ -140,7 +140,7 @@ const Other = () => {
                     {contextData.data.websites[link].link}
                   </p>
                 </div>
-                <div className="flex justify-center items-center">
+                {/* <div className="flex justify-center items-center">
                   <span
                     className={
                       index === 0
@@ -162,7 +162,7 @@ const Other = () => {
                   >
                     <BsCaretDown />
                   </span>
-                </div>
+                </div> */}
               </div>
             ))}
         </>
