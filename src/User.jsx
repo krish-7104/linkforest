@@ -212,7 +212,7 @@ const UserLink = () => {
               </a>
             )}
           </div>
-          <ul className="flex justify-center items-center flex-col gap-4 mt-6 pb-4 w-[85%] md:w-[30%]">
+          <ul className="flex justify-center items-center flex-col gap-4 mt-6 pb-4 w-[85%] md:w-[30%] 2xl:w-[24%]">
             {data.websites &&
               Object.keys(data?.websites).map((website, index) => (
                 <li

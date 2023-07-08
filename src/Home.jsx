@@ -1,7 +1,7 @@
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
-  signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -24,7 +24,7 @@ const Index = () => {
 
   const googleLoginEventHandler = () => {
     toast.loading("Logging In");
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
       .then((result) => {
         toast.dismiss();
         toast.success("Login Successfull");
@@ -137,30 +137,6 @@ const Index = () => {
             </div>
           </motion.div>
         </div>
-        {/* <div className="flex flex-col justify-center items-center w-full">
-          <p className="text-3xl md:text-5xl font-semibold font-Montserrat my-10">
-            Create Your In <span className="text-emerald-500">5 Steps</span>
-          </p>
-          <div className="flex justify-evenly items-start w-full">
-            <ul>
-              <li className="px-4 py-2 bg-slate-200 mb-3 rounded cursor-pointer ease-linear hover:ease-linear transition-all hover:transition-all duration-200 hover:duration-200 hover:scale-105 font-Montserrat">
-                Create Account And Username
-              </li>
-              <li className="px-4 py-2 bg-slate-200 mb-3 rounded cursor-pointer ease-linear hover:ease-linear transition-all hover:transition-all duration-200 hover:duration-200 hover:scale-105 font-Montserrat">
-                Enter Name And Description
-              </li>
-              <li className="px-4 py-2 bg-slate-200 mb-3 rounded cursor-pointer ease-linear hover:ease-linear transition-all hover:transition-all duration-200 hover:duration-200 hover:scale-105 font-Montserrat">
-                Add Links
-              </li>
-              <li className="px-4 py-2 bg-slate-200 mb-3 rounded cursor-pointer ease-linear hover:ease-linear transition-all hover:transition-all duration-200 hover:duration-200 hover:scale-105 font-Montserrat">
-                Select Theme
-              </li>
-              <li className="px-4 py-2 bg-slate-200 mb-3 rounded cursor-pointer ease-linear hover:ease-linear transition-all hover:transition-all duration-200 hover:duration-200 hover:scale-105 font-Montserrat">
-                You Are Ready 🚀
-              </li>
-            </ul>
-          </div>
-        </div> */}
         <div
           className="mt-10 w-full cursor-pointer"
           onClick={() => window.open("https://www.krishjotaniya.live")}

@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
-  signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
 import { AiOutlineMenu } from "react-icons/ai";
 import { auth } from "../backend/firebaseConfig";
@@ -19,9 +19,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      toast.loading("Checking Authentication");
       if (!user) {
+        toast.dismiss();
         setLogin(false);
       } else {
+        toast.dismiss();
         setLogin(true);
       }
     });
@@ -30,7 +33,7 @@ const Navbar = () => {
 
   const googleLoginEventHandler = () => {
     toast.loading("Logging In");
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
       .then((result) => {
         toast.dismiss();
         toast.success("Login Successfull");

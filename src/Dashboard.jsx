@@ -98,17 +98,17 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="h-[100vh] w-full bg-slate-100">
+    <div className="h-[100vh] w-full bg-slate-200/70 2xl:flex 2xl:justify-center 2xl:items-center">
       {loading && (
         <div className="flex justify-center items-center h-[100vh]">
           <HashLoader color="#34d399" />
         </div>
       )}
       {!loading && contextData.data && (
-        <div className="bg-slate-50 flex justify-center md:justify-evenly items-center pt-24 w-full flex-col md:flex-row">
+        <div className="flex justify-center mx-auto md:justify-evenly items-center pt-24 w-full 2xl:w-[80%] flex-col md:flex-row">
           {/* Preview Section */}
           <div
-            className={`rounded-xl shadow-md h-[70vh] md:h-[76vh] w-[75%] md:w-[22%] flex justify-start items-center flex-col px-6 overflow-scroll pb-4 mb-8 md:mb-0`}
+            className={`rounded-2xl shadow-md h-[70vh] md:h-[76vh] 2xl:h-[65vh] w-[75%] md:w-[22%] flex justify-start items-center flex-col px-6 overflow-scroll pb-4 mb-8 md:mb-0`}
             style={{
               backgroundColor: `${contextData.data?.customTheme?.background?.toString(
                 16
@@ -262,7 +262,7 @@ const Dashboard = () => {
                         window.open(contextData?.data?.websites[website].link)
                       }
                       key={index}
-                      className={`bg-slate-200 px-2 py-[6px] md:py-[8px] text-xs md:text-sm w-full text-center rounded-md font-Montserrat transition-all duration-300 ease-linear hover:ease-linear hover:scale-105 hover:duration-300 hover:transition-all cursor-pointer ${
+                      className={`bg-slate-200 px-[6px] py-[6px] md:py-[8px] text-xs md:text-[12px] w-full text-center rounded-md font-Montserrat transition-all duration-300 ease-linear hover:ease-linear hover:scale-105 hover:duration-300 hover:transition-all cursor-pointer ${
                         contextData?.data?.customTheme?.stroke &&
                         `border-[1.4px]`
                       }`}
@@ -274,7 +274,7 @@ const Dashboard = () => {
             </ul>
           </div>
           {/* Main Dashboard Section */}
-          <div className="rounded-xl shadow-md md:h-[77vh] w-full md:w-[56%] flex justify-start items-center flex-col px-4 md:px-6 bg-white pb-4">
+          <div className="rounded-xl shadow-md md:h-[77vh] 2xl:h-[65vh] w-full md:w-[56%] flex justify-start items-center flex-col px-4 md:px-6 bg-white pb-4">
             <ul className="flex justify-evenly items-center my-4 w-full font-Montserrat font-medium text-base">
               <li
                 onClick={() => setMenu("profile")}

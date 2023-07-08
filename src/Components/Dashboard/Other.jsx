@@ -190,7 +190,7 @@ const Other = () => {
                 Website Title:
               </label>
               <input
-                className="w-full border-slate-400 font-Montserrat font-medium text-[14px] md:text-sm border-[1.4px] rounded p-1 px-2 mb-1"
+                className="w-full border-slate-400 font-Montserrat font-medium text-[14px] md:text-sm border-[1.4px] rounded p-2 px-2 mb-3"
                 value={website.title}
                 onChange={(e) =>
                   setWebsite({ ...website, title: e.target.value })
@@ -200,7 +200,7 @@ const Other = () => {
                 Website Link:
               </label>
               <input
-                className="w-full border-slate-400 font-Montserrat font-medium text-[14px] md:text-sm border-[1.4px] rounded p-1 px-2"
+                className="w-full border-slate-400 font-Montserrat font-medium text-[14px] md:text-sm border-[1.4px] rounded p-2 px-2"
                 value={website.link}
                 onChange={(e) =>
                   setWebsite({ ...website, link: e.target.value })
