@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import {
   FaFacebookF,
-  FaTwitter,
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { HiMail } from "react-icons/hi";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { HashLoader } from "react-spinners";
@@ -156,7 +156,7 @@ const UserLink = () => {
                 href={data?.socialLinks?.twitter}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
-                <FaTwitter />
+                <FaXTwitter />
               </a>
             )}
             {data?.socialLinks?.instagram && (

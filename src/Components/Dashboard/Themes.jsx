@@ -40,7 +40,7 @@ const Themes = () => {
         updatedTime: serverTimestamp(),
       });
       toast.dismiss();
-      toast.success("Social Links Updated!");
+      toast.success("Theme Updated!");
     } catch (error) {
       toast.dismiss();
       console.error(error);

@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import {
   FaFacebookF,
-  FaTwitter,
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { HiMail } from "react-icons/hi";
 import { userContext } from "../../Contexts/userContext";
 import { db } from "../../backend/firebaseConfig";
@@ -87,7 +87,7 @@ const Social = () => {
           />
         </div>
         <div className="flex justify-center items-center w-full md:w-[80%] border-[1.4px] border-slate-400 p-1 rounded mb-4">
-          <FaTwitter className="md:mx-2 mx-1 p-[2px] text-[20px] md:text-[24px] text-slate-800" />
+          <FaXTwitter className="md:mx-2 mx-1 p-[2px] text-[20px] md:text-[24px] text-slate-800" />
           <input
             placeholder="https://www.twitter.com/username"
             type="link"
