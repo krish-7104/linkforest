@@ -1,7 +1,7 @@
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -14,17 +14,19 @@ const Index = () => {
   const navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if (!user) {
         setLogin(false);
       } else {
         setLogin(true);
       }
     });
+    console.log("Hey");
   }, []);
 
   const googleLoginEventHandler = () => {
     toast.loading("Logging In");
-    signInWithRedirect(auth, provider)
+    signInWithPopup(auth, provider)
       .then((result) => {
         toast.dismiss();
         toast.success("Login Successfull");
@@ -89,7 +91,7 @@ const Index = () => {
             width={400}
             height={400}
             alt=""
-            className="mb-8 w-[320px] h-[320px]"
+            className="mb-8 w-[320px] h-[320px] md:w-[450px] md:h-[450px]"
           />
           <motion.div
             initial={{
@@ -103,7 +105,7 @@ const Index = () => {
           >
             {!login && (
               <button
-                className="text-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 hover:shadow-lg hover:shadow-emerald-600/50 bg-gradient-to-tr from-emerald-600 to-emerald-400 shadow-md shadow-emerald-400/50 font-semibold"
+                className="text-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 font-semibold bg-emerald-500"
                 onClick={googleLoginEventHandler}
               >
                 Create Yours Now!
@@ -111,7 +113,7 @@ const Index = () => {
             )}
             {login && (
               <button
-                className="text-slate-50 bg-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 hover:shadow-lg hover:shadow-slate-800/50 shadow-md shadow-slate-700/50 font-semibold"
+                className="text-slate-50 bg-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 font-semibold"
                 onClick={() => navigate("/dashboard")}
               >
                 Go To Dashboard
