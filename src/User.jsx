@@ -8,7 +8,18 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiMail } from "react-icons/hi";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  FieldValue,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  increment,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { HashLoader } from "react-spinners";
 import { db } from "./backend/firebaseConfig";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,9 +29,11 @@ const UserLink = () => {
   const slug = router.pathname.replace("/", "");
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  let userUid = null;
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    slug && getDataFromServer();
+    getDataFromServer();
   }, [slug]);
 
   const getDataFromServer = async () => {
@@ -30,10 +43,10 @@ const UserLink = () => {
       where("username", "==", slug)
     );
     const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-      setLoading(false);
-    } else {
+
+    if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
+        userUid = doc.id;
         setData(doc.data());
         if (doc.data().name !== undefined) {
           document.title = doc.data().name + " - Link Forest";
@@ -41,7 +54,30 @@ const UserLink = () => {
           document.title = "Link Forest";
         }
       });
-      setLoading(false);
+
+      count === 0 && updateAnalytics(userUid);
+    }
+    setLoading(false);
+  };
+
+  const updateAnalytics = async (uid) => {
+    console.log("Hey");
+    setCount((prev) => prev + 1);
+    if (!uid) return;
+    try {
+      const currentDate = new Date().toLocaleDateString();
+      const encodedDate = currentDate.replace(/\//g, "-");
+      const analyticsRef = doc(db, "Analytics", uid);
+
+      const docSnap = await getDoc(analyticsRef);
+      if (docSnap.exists()) {
+        await updateDoc(analyticsRef, { [encodedDate]: increment(1) });
+      } else {
+        await setDoc(analyticsRef, { [encodedDate]: 1 });
+      }
+      setCount((prev) => prev + 1);
+    } catch (error) {
+      console.error("Error updating analytics:", error);
     }
   };
 
