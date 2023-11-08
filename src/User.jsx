@@ -9,7 +9,6 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import { HiMail } from "react-icons/hi";
 import {
-  FieldValue,
   collection,
   doc,
   getDoc,
@@ -61,12 +60,14 @@ const UserLink = () => {
   };
 
   const updateAnalytics = async (uid) => {
-    console.log("Hey");
     setCount((prev) => prev + 1);
     if (!uid) return;
     try {
-      const currentDate = new Date().toLocaleDateString();
-      const encodedDate = currentDate.replace(/\//g, "-");
+      const currentDate = new Date();
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const year = String(currentDate.getFullYear()).slice(-2);
+      const encodedDate = `${day}-${month}-${year}`;
       const analyticsRef = doc(db, "Analytics", uid);
 
       const docSnap = await getDoc(analyticsRef);
