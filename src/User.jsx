@@ -64,8 +64,8 @@ const UserLink = () => {
     if (!uid) return;
     try {
       const currentDate = new Date();
-      const day = String(currentDate.getDate()).padStart(2, "0");
-      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const day = String(currentDate.getDate());
+      const month = String(currentDate.getMonth() + 1);
       const year = String(currentDate.getFullYear()).slice(-2);
       const encodedDate = `${day}-${month}-${year}`;
       const analyticsRef = doc(db, "Analytics", uid);
