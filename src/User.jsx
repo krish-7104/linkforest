@@ -6,6 +6,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaThreads,
   FaXTwitter,
 } from "react-icons/fa6";
 import {
@@ -245,7 +246,7 @@ const UserLink = () => {
                 href={data?.socialLinks?.threads}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
-                <FaGithub />
+                <FaThreads />
               </a>
             )}
             {data?.socialLinks?.email && (
