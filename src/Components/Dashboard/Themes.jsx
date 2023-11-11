@@ -203,7 +203,7 @@ const Themes = () => {
             className={`rounded-md cursor-pointer ${
               contextData.data.themeType === "default" &&
               contextData.data.theme === "Default" &&
-              "border-2 border-slate-950"
+              "border-2 border-slate-950 p-1 shadow-md shadow-emerald-400/40"
             }`}
             onClick={() => defaultThemeSelectHandler("default")}
             alt=""
@@ -215,7 +215,7 @@ const Themes = () => {
             className={`rounded-md cursor-pointer ${
               contextData.data.themeType === "default" &&
               contextData.data.theme === "Dark" &&
-              "border-2 border-slate-950"
+              "border-2 border-slate-950 p-1 shadow-md shadow-emerald-400/40"
             }`}
             onClick={() => defaultThemeSelectHandler("dark")}
             alt=""
@@ -227,7 +227,7 @@ const Themes = () => {
             className={`rounded-md cursor-pointer ${
               contextData.data.themeType === "default" &&
               contextData.data.theme === "Link Forest" &&
-              "border-2 border-slate-950"
+              "border-2 border-slate-950 p-1 shadow-md shadow-emerald-400/40"
             }`}
             onClick={() => defaultThemeSelectHandler("linkforest")}
             alt=""
@@ -239,7 +239,7 @@ const Themes = () => {
             className={`rounded-md cursor-pointer ${
               contextData.data.themeType === "default" &&
               contextData.data.theme === "Minimal" &&
-              "border-2 border-slate-950"
+              "border-2 border-slate-950 p-1 shadow-md shadow-emerald-400/40"
             }`}
             onClick={() => defaultThemeSelectHandler("minimal")}
             alt=""
@@ -251,7 +251,7 @@ const Themes = () => {
             className={`rounded-md cursor-pointer ${
               contextData.data.themeType === "default" &&
               contextData.data.theme === "Sky Blue" &&
-              "border-2 border-slate-950"
+              "border-2 border-slate-950 p-1 shadow-md shadow-emerald-400/40"
             }`}
             onClick={() => defaultThemeSelectHandler("sky blue")}
             alt=""
@@ -263,7 +263,7 @@ const Themes = () => {
             className={`rounded-md cursor-pointer ${
               contextData.data.themeType === "default" &&
               contextData.data.theme === "Shades Of Sky" &&
-              "border-2 border-slate-950"
+              "border-2 border-slate-950 p-1 shadow-md shadow-emerald-400/40"
             }`}
             onClick={() => defaultThemeSelectHandler("shades of sky")}
             alt=""
@@ -272,7 +272,7 @@ const Themes = () => {
           />
         </div>
       </div>
-      <span className="w-full bg-slate-300 py-[0.6px] rounded my-4"></span>
+      {/* <span className="w-full bg-slate-300 py-[0.6px] rounded my-4"></span>
       <div className="w-full">
         <p className="border-l-4 border-emerald-500 font-Montserrat font-semibold pl-2 text-lg my-4 select-none">
           Customized Themes
@@ -399,7 +399,7 @@ const Themes = () => {
                 }}
               ></span>
             </li>
-            {/* <li className={`flex items-center font-Montserrat mb-2 select-none font-medium  ${
+            <li className={`flex items-center font-Montserrat mb-2 select-none font-medium  ${
                   type === "background" && "text-emerald-500"
                 }s`}>
               Stroke Color:
@@ -420,7 +420,7 @@ const Themes = () => {
                   )}`,
                 }}
               ></span>
-            </li> */}
+            </li>
           </ul>
           {colorPicker && (
             <div className="mb-4 md:mb-0">
@@ -428,7 +428,7 @@ const Themes = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import {
+  FaEnvelope,
   FaFacebookF,
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { HiMail } from "react-icons/hi";
+  FaXTwitter,
+} from "react-icons/fa6";
 import {
   collection,
   doc,
@@ -235,6 +235,19 @@ const UserLink = () => {
                 <FaGithub />
               </a>
             )}
+            {data?.socialLinks?.threads && (
+              <a
+                rel="noreferrer"
+                style={{
+                  color: `${data?.customTheme?.textColor?.toString(16)}`,
+                }}
+                target="_blank"
+                href={data?.socialLinks?.threads}
+                className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
+              >
+                <FaGithub />
+              </a>
+            )}
             {data?.socialLinks?.email && (
               <a
                 rel="noreferrer"
@@ -245,7 +258,7 @@ const UserLink = () => {
                 href={`mailto:${data?.socialLinks?.email}`}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
-                <HiMail />
+                <FaEnvelope />
               </a>
             )}
           </div>
