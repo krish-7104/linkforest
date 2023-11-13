@@ -8,20 +8,21 @@ import { toast } from "react-hot-toast";
 import { auth } from "./backend/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+// import Lottie from "lottie-react";
+// import PARTYPOPPER from "./assets/partypopper.json";
+
 const Index = () => {
   const provider = new GoogleAuthProvider();
   const [login, setLogin] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
       if (!user) {
         setLogin(false);
       } else {
         setLogin(true);
       }
     });
-    console.log("Hey");
   }, []);
 
   const googleLoginEventHandler = () => {
@@ -77,7 +78,71 @@ const Index = () => {
             &quot;
           </span>
         </motion.p>
-        <div className="w-[80%] mt-16 flex justify-center md:justify-evenly items-center flex-col md:flex-row">
+        <div className="bg-slate-200 w-full p-6 mt-10 font-Montserrat text-center font-semibold tracking-wide relative flex justify-center items-center">
+          {/* <Lottie
+            animationData={PARTYPOPPER}
+            loop={true}
+            size={10}
+            className="w-28 absolute -top-6 left-20"
+          /> */}
+          <p>
+            Link Forest Official App Launching Soon With Analytics Feature! 🎉
+          </p>
+        </div>
+        <div className="mt-10">
+          {!login && (
+            <button
+              className="text-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 font-semibold bg-emerald-500"
+              onClick={googleLoginEventHandler}
+            >
+              Create Yours Now!
+            </button>
+          )}
+          {login && (
+            <button
+              className="text-slate-50 bg-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 font-semibold"
+              onClick={() => navigate("/dashboard")}
+            >
+              Go To Dashboard
+            </button>
+          )}
+        </div>
+        <div className="w-[80%] mt-8 flex justify-center md:justify-evenly items-center flex-col md:flex-row">
+          <motion.img
+            initial={{
+              opacity: 0,
+              x: -50,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            src={require("./assets/homeDown.png")}
+            width={400}
+            height={400}
+            alt=""
+            className="mb-8 w-[320px] h-[320px] md:w-[450px] md:h-[450px]"
+          />
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 50,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+          >
+            <p className="font-Montserrat font-extrabold md:font-bold text-5xl md:text-8xl mt-5 text-center md:text-left uppercase md:capitalize leading-[55px] md:leading-none tracking-wider md:tracking-normal">
+              Create
+              <br />
+              Bio
+              <br />
+              Links.
+            </p>
+          </motion.div>
+        </div>
+        <div className="w-[80%] mt-8 flex justify-center md:justify-evenly items-center flex-col md:flex-row-reverse">
           <motion.img
             initial={{
               opacity: 0,
@@ -103,26 +168,19 @@ const Index = () => {
               x: 0,
             }}
           >
-            {!login && (
-              <button
-                className="text-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 font-semibold bg-emerald-500"
-                onClick={googleLoginEventHandler}
-              >
-                Create Yours Now!
-              </button>
-            )}
-            {login && (
-              <button
-                className="text-slate-50 bg-slate-950 flex junpstify-center items-center font-Montserrat px-6 py-3 rounded mx-auto tracking-wide text-[18px] ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300 font-semibold"
-                onClick={() => navigate("/dashboard")}
-              >
-                Go To Dashboard
-              </button>
-            )}
             <p className="font-Montserrat font-medium text-xl mt-5 text-center">
               Unify your online presence with Link Forest
             </p>
-            <div className="w-full flex justify-center items-center mt-6">
+            <p className="font-Montserrat font-medium text-xl mt-5 text-center">
+              Create Your's In Just Minutes.
+            </p>
+            <p className="font-Montserrat font-medium text-xl mt-5 text-center">
+              Different Themes And Minimal Looks.
+            </p>
+            <p className="font-Montserrat font-medium text-xl mt-5 text-center">
+              And Its Free Forever 100%
+            </p>
+            <div className="w-full flex justify-center items-center mt-6 mb-10 md:mb-0">
               <a
                 href="https://www.producthunt.com/posts/link-forest?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-link&#0045;forest"
                 target="_blank"
@@ -140,10 +198,10 @@ const Index = () => {
           </motion.div>
         </div>
         <div
-          className="mt-10 w-full cursor-pointer"
+          className="mt-10 mb-2 w-full cursor-pointer"
           onClick={() => window.open("https://www.krishjotaniya.live")}
         >
-          <p className="font-Montserrat font-semibold py-3 text-center">
+          <p className="font-Montserrat text-lg font-semibold py-3 text-center">
             Developed With ❤️ By Krish Jotaniya
           </p>
         </div>

@@ -22,6 +22,7 @@ const Dashboard = () => {
   useEffect(() => {
     setLoading(true);
     onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if (!user) {
         navigate("/");
       } else {
@@ -87,7 +88,7 @@ const Dashboard = () => {
         }
       } else {
         sessionStorage.setItem("type", Math.random() * 1000);
-        navigate.push("/username");
+        navigate("/username", { state: { type: "new" } });
       }
       setLoading(false);
     };
