@@ -7,6 +7,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaSnapchat,
   FaThreads,
   FaXTwitter,
 } from "react-icons/fa6";
@@ -126,7 +127,7 @@ const Social = () => {
         <div className="flex justify-center items-center w-full md:w-[80%] border-[1.4px] border-slate-400 p-1 rounded mb-4">
           <FaThreads className="md:mx-2 mx-1 p-[2px] text-[20px] md:text-[24px] text-slate-800" />
           <input
-            placeholder="https://www.threads.com/username"
+            placeholder="https://www.threads.net/username"
             type="link"
             className="w-full outline-none px-2 placeholder-slate-500 placeholder:text-[13px] md:placeholder:text-sm font-Montserrat text-[13px] md:text-sm py-[3px] font-medium"
             value={contextData.data.socialLinks?.threads}
@@ -154,6 +155,24 @@ const Social = () => {
                 socialLinks: {
                   ...contextData.data.socialLinks,
                   email: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className="flex justify-center items-center w-full md:w-[80%] border-[1.4px] border-slate-400 p-1 rounded mb-4">
+          <FaSnapchat className="md:mx-2 mx-1 p-[2px] text-[20px] md:text-[24px] text-slate-800" />
+          <input
+            placeholder="https://www.snapchat.com/add/username"
+            type="link"
+            className="w-full outline-none px-2 placeholder-slate-500 placeholder:text-[13px] md:placeholder:text-sm font-Montserrat text-[13px] md:text-sm py-[3px] font-medium"
+            value={contextData.data.socialLinks?.snapchat}
+            onChange={(e) =>
+              contextData.setData({
+                ...contextData.data,
+                socialLinks: {
+                  ...contextData.data.socialLinks,
+                  snapchat: e.target.value,
                 },
               })
             }

@@ -6,6 +6,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaSnapchat,
   FaThreads,
   FaXTwitter,
 } from "react-icons/fa6";
@@ -260,6 +261,19 @@ const UserLink = () => {
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
                 <FaEnvelope />
+              </a>
+            )}
+            {data?.socialLinks?.snapchat && (
+              <a
+                rel="noreferrer"
+                style={{
+                  color: `${data?.customTheme?.textColor?.toString(16)}`,
+                }}
+                target="_blank"
+                href={data?.socialLinks?.snapchat}
+                className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
+              >
+                <FaSnapchat />
               </a>
             )}
           </div>

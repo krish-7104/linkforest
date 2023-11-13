@@ -8,8 +8,14 @@ import { useNavigate } from "react-router-dom";
 import ProfileSection from "./ProfileSection";
 import DashboardSection from "./DashboardSection";
 import { userContext } from "./Contexts/userContext";
+import OneSignal from "react-onesignal";
 
 const Dashboard = () => {
+  useEffect(() => {
+    OneSignal.init({ appId: process.env.REACT_APP_ONESIGNAL }).then(() => {
+      OneSignal.Slidedown.promptPush();
+    });
+  }, []);
   const [loading, setLoading] = useState(true);
   const contextData = useContext(userContext);
   const navigate = useNavigate();

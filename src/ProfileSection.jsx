@@ -7,6 +7,7 @@ import {
   FaFacebook,
   FaEnvelope,
   FaThreads,
+  FaSnapchat,
 } from "react-icons/fa6";
 import { userContext } from "./Contexts/userContext";
 const ProfileSection = () => {
@@ -152,6 +153,21 @@ const ProfileSection = () => {
               rel="noreferrer"
             >
               <FaThreads />
+            </a>
+          )}
+          {contextData?.data?.socialLinks?.snapchat && (
+            <a
+              target="_blank"
+              href={contextData?.data?.socialLinks?.snapchat}
+              className="text-sm transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all mx-2"
+              style={{
+                color: `${contextData.data?.customTheme?.textColor?.toString(
+                  16
+                )}`,
+              }}
+              rel="noreferrer"
+            >
+              <FaSnapchat />
             </a>
           )}
         </div>
