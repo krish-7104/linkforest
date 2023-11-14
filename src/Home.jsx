@@ -197,11 +197,22 @@ const Index = () => {
             </div>
           </motion.div>
         </div>
+        <div className="w-[80%] mt-8 flex justify-center md:justify-evenly items-center flex-col md:flex-row">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/kN5K4Yaem-s?si=XHFsKxztdotPlG58"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
         <div
           className="mt-10 mb-2 w-full cursor-pointer"
           onClick={() => window.open("https://www.krishjotaniya.live")}
         >
-          <p className="font-Montserrat text-lg font-semibold py-3 text-center">
+          <p className="font-Montserrat md:text-lg font-semibold py-3 text-center">
             Developed With ❤️ By Krish Jotaniya
           </p>
         </div>

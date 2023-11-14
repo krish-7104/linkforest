@@ -52,7 +52,7 @@ const UserLink = () => {
         if (doc.data().name !== undefined) {
           document.title = doc.data().name + " - Link Forest";
         } else {
-          document.title = "Link Forest";
+          document.title = "@" + doc.data().username + " - Link Forest";
         }
       });
 
@@ -136,12 +136,12 @@ const UserLink = () => {
               fill="#fff"
             ></path>
           </svg>
-          <p className="text-2xl font-bold font-Montserrat">
+          <p className="text-2xl font-bold font-Montserrat text-center">
             Claim <span className="text-emerald-500">@{slug}</span> Link Forest
             Now
           </p>
           <button
-            className="bg-slate-950 px-4 py-2 rounded-md mt-4 text-slate-50 font-Montserrat font-medium"
+            className="bg-slate-950 px-4 py-2 rounded-md mt-4 text-slate-50 font-Montserrat font-medium text-center"
             onClick={() => navigate("/")}
           >
             Claim This Link Forest
@@ -151,7 +151,11 @@ const UserLink = () => {
       {!loading && Object.keys(data)?.length !== 0 && (
         <>
           <img
-            src={data.image}
+            src={
+              data.image
+                ? data.image
+                : "https://firebasestorage.googleapis.com/v0/b/link-forest.appspot.com/o/noImage.png?alt=media&token=af7f81d0-1c93-4120-9824-df8c62d90fcd"
+            }
             alt=""
             className="rounded-full shadow-2xl object-cover mt-16 h-[100px] w-[100px]"
           />
