@@ -8,8 +8,8 @@ import { toast } from "react-hot-toast";
 import { auth } from "./backend/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-// import Lottie from "lottie-react";
-// import PARTYPOPPER from "./assets/partypopper.json";
+import Lottie from "lottie-react";
+import PARTYPOPPER from "./assets/partypopper.json";
 
 const Index = () => {
   const provider = new GoogleAuthProvider();
@@ -78,16 +78,24 @@ const Index = () => {
             &quot;
           </span>
         </motion.p>
-        <div className="bg-slate-200 w-full p-6 mt-10 font-Montserrat text-center font-semibold tracking-wide relative flex justify-center items-center">
-          {/* <Lottie
+        <div className="bg-slate-200 w-full p-6 mt-10 font-Montserrat text-center font-semibold tracking-wide flex justify-center items-center flex-col relative pb-20">
+          <p>
+            Link Forest Official App Launched With Analytics Feature 🎉 Download
+            Now!
+          </p>
+          <a href="https://play.google.com/store/apps/details?id=com.krish.linkforest&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+            <img
+              alt="Get it on Google Play"
+              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+              className="h-20 mt-4"
+            />
+          </a>
+          <Lottie
             animationData={PARTYPOPPER}
             loop={true}
             size={10}
-            className="w-28 absolute -top-6 left-20"
-          /> */}
-          <p>
-            Link Forest Official App Launching Soon With Analytics Feature! 🎉
-          </p>
+            className="w-32 absolute -bottom-4"
+          />
         </div>
         <div className="mt-10">
           {!login && (

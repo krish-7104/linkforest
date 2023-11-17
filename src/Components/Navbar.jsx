@@ -62,6 +62,10 @@ const Navbar = () => {
     if (type === "Home") navigate("/");
     if (type === "Dashboard") navigate("/dashboard");
     if (type === "Developer") window.open("https://www.krishjotaniya.live");
+    if (type === "Download App")
+      window.open(
+        "https://play.google.com/store/apps/details?id=com.krish.linkforest"
+      );
     if (type === "Feedback")
       window.open("https://www.krishjotaniya.live/contactme?ref=linkforest");
     if (type === "Logout") logoutButtonHandler();
@@ -142,6 +146,12 @@ const Navbar = () => {
                   Login With Google
                 </li>
               )}
+              <li
+                className="font-Montserrat font-medium my-2 text-sm tracking-wide cursor-pointer"
+                onClick={() => menuHandler("Download App")}
+              >
+                Download App
+              </li>
               <li
                 className="font-Montserrat font-medium my-2 text-sm tracking-wide cursor-pointer"
                 onClick={() => menuHandler("Developer")}
