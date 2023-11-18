@@ -11,6 +11,7 @@ import { userContext } from "./Contexts/userContext";
 import OneSignal from "react-onesignal";
 
 const Dashboard = () => {
+  const [show, setShow] = useState(false);
   useEffect(() => {
     OneSignal.init({ appId: process.env.REACT_APP_ONESIGNAL }).then(() => {
       OneSignal.Slidedown.promptPush();
@@ -103,8 +104,30 @@ const Dashboard = () => {
       ) : (
         <div className="flex justify-center mx-auto md:justify-between items-center w-full flex-col md:flex-row">
           <div className="flex 2xl:max-w-[1500px] mx-auto w-full flex-col md:flex-row">
-            <div className="w-full md:w-[40%] flex justify-center items-end 2xl:items-center h-[100vh] relative pb-10">
+            <div className="w-full md:w-[40%] flex justify-center items-end 2xl:items-center h-[100vh] relative pb-6 md:pb-10">
               <ProfileSection />
+            </div>
+            <div className="md:hidden w-[90%] mb-6 flex justify-center mx-auto flex-col items-center">
+              <p className="text-center font-Montserrat font-bold text-lg">
+                {!show
+                  ? "Download Our App For Better Mobile Experience of The Dashboard And Use New Realtime Analytics Feature!"
+                  : "Download Our App To Use Realtime Analytics Feature!"}
+              </p>
+              <a href="https://play.google.com/store/apps/details?id=com.krish.linkforest&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                <img
+                  alt="Get it on Google Play"
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  className="h-20 mt-2"
+                />
+              </a>
+              {!show && (
+                <p
+                  className="mt-2 font-Montserrat font-medium text-sm p-2"
+                  onClick={() => setShow(true)}
+                >
+                  Continue With Web Version
+                </p>
+              )}
             </div>
             <DashboardSection />
           </div>

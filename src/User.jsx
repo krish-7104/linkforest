@@ -32,7 +32,7 @@ const UserLink = () => {
   const [loading, setLoading] = useState(true);
   let userUid = null;
   const [count, setCount] = useState(0);
-
+  const [uid, setUid] = useState("");
   useEffect(() => {
     getDataFromServer();
   }, [slug]);
@@ -48,6 +48,7 @@ const UserLink = () => {
     if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
         userUid = doc.id;
+        setUid(doc.id);
         setData(doc.data());
         if (doc.data().name !== undefined) {
           document.title = doc.data().name + " - Link Forest";
@@ -71,17 +72,51 @@ const UserLink = () => {
       const year = String(currentDate.getFullYear()).slice(-2);
       const encodedDate = `${day}-${month}-${year}`;
       const analyticsRef = doc(db, "Analytics", uid);
-
-      const docSnap = await getDoc(analyticsRef);
-      if (docSnap.exists()) {
-        await updateDoc(analyticsRef, { [encodedDate]: increment(1) });
-      } else {
-        await setDoc(analyticsRef, { [encodedDate]: 1 });
-      }
+      await setDoc(analyticsRef, { [encodedDate]: 1 }, { merge: true });
       setCount((prev) => prev + 1);
     } catch (error) {
       console.error("Error updating analytics:", error);
     }
+  };
+
+  const addLinkAnalyticsData = async (link) => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate());
+    const month = String(currentDate.getMonth() + 1);
+    const year = String(currentDate.getFullYear()).slice(-2);
+    const encodedDate = `${day}-${month}-${year}`;
+    const analyticsRef = doc(db, "Analytics", uid);
+    await setDoc(
+      analyticsRef,
+      {
+        links: {
+          [link]: {
+            [encodedDate]: increment(1),
+          },
+        },
+      },
+      { merge: true }
+    );
+  };
+
+  const socialLinksAnalytics = async (social) => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate());
+    const month = String(currentDate.getMonth() + 1);
+    const year = String(currentDate.getFullYear()).slice(-2);
+    const encodedDate = `${day}-${month}-${year}`;
+    const analyticsRef = doc(db, "Analytics", uid);
+    await setDoc(
+      analyticsRef,
+      {
+        socialLinks: {
+          [social]: {
+            [encodedDate]: increment(1),
+          },
+        },
+      },
+      { merge: true }
+    );
   };
 
   return (
@@ -183,6 +218,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Facebook")}
                 href={data?.socialLinks?.facebook}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -196,6 +232,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Twitter")}
                 href={data?.socialLinks?.twitter}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -209,6 +246,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Instagram")}
                 href={data?.socialLinks?.instagram}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -222,6 +260,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Linkedin")}
                 href={data?.socialLinks?.linkedin}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -235,6 +274,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Github")}
                 href={data?.socialLinks?.github}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -248,6 +288,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Threads")}
                 href={data?.socialLinks?.threads}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -261,6 +302,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Mail")}
                 href={`mailto:${data?.socialLinks?.email}`}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -274,6 +316,7 @@ const UserLink = () => {
                   color: `${data?.customTheme?.textColor?.toString(16)}`,
                 }}
                 target="_blank"
+                onClick={() => socialLinksAnalytics("Snapchat")}
                 href={data?.socialLinks?.snapchat}
                 className="text-lg transition-all duration-300 ease-linear hover:ease-linear hover:scale-125 hover:duration-300 hover:transition-all"
               >
@@ -295,7 +338,10 @@ const UserLink = () => {
                       16
                     )}`,
                   }}
-                  onClick={() => window.open(data?.websites[website]?.link)}
+                  onClick={() => {
+                    window.open(data?.websites[website]?.link);
+                    addLinkAnalyticsData(data.websites[website].link);
+                  }}
                   key={index}
                   className="bg-slate-200 p-2 w-full text-center rounded-md font-Montserrat transition-all duration-300 ease-linear hover:ease-linear hover:scale-105 hover:duration-300 hover:transition-all cursor-pointer"
                 >
