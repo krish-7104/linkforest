@@ -6,6 +6,8 @@ import { IoClose } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
 const Other = () => {
   const contextData = useContext(userContext);
   const [popup, setPopup] = useState({
@@ -118,58 +120,120 @@ const Other = () => {
     updateValueHandler(newObject, "Website Deleted!");
     resetPopupHandler();
   };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = reorder(
+      Object.values(contextData.data.websites),
+      result.source.index,
+      result.destination.index
+    );
+
+    let newObject = {};
+    items.forEach((item, index) => {
+      newObject[index] = item;
+    });
+
+    updateValueHandler(newObject, "List Rearranged!");
+  };
+
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
   return (
     <div className="flex justify-center items-end flex-col relative">
       {!popup.state && (
         <>
-          <button
-            onClick={() => setPopupHandler("Add")}
-            className="bg-slate-300 px-2 py-1 rounded font-Montserrat font-semibold text-sm mb-5 shadow-sm hover:shadow-md hover:shadow-slate-400 ease-linear hover:ease-linear transition-all hover:transition-all duration-300 hover:duration-300"
-          >
-            Add Link
-          </button>
-          {contextData.data.websites &&
-            Object.keys(contextData.data.websites).map((link, index) => (
-              <div
-                key={index}
-                className="w-full border-slate-400 border-[1.4px] rounded-lg px-4 py-3 flex justify-between items-center mb-4"
-              >
+          <div className="w-full flex justify-end md:justify-between">
+            <p className="font-Montserrat hidden md:block font-medium text-sm">
+              You can drag and rearrange the websites!
+            </p>
+            <button
+              onClick={() => setPopupHandler("Add")}
+              className="bg-emerald-400 px-2 py-2 rounded font-Montserrat font-semibold text-sm mb-5"
+            >
+              Add Link
+            </button>
+          </div>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided) => (
                 <div
-                  className="cursor-pointer w-[80%]"
-                  onClick={() => setPopupHandler("Edit", index)}
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className="w-[95%] md:w-[90%] mx-auto"
                 >
-                  <p className="font-Montserrat text-sm md:text-base font-medium">
-                    {contextData.data.websites[link].title}
-                  </p>
-                  <p className="font-Montserrat text-xs md:text-sm font-normal mt-[2px]">
-                    {contextData.data.websites[link].link}
-                  </p>
+                  {contextData.data.websites &&
+                    Object.keys(contextData.data.websites).map(
+                      (link, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={`item-${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <div
+                                key={index}
+                                className="w-full border-slate-400 border-[1.4px] rounded-lg px-4 py-3 flex justify-between items-center mb-4"
+                              >
+                                <div
+                                  className="cursor-pointer w-[80%]"
+                                  onClick={() => setPopupHandler("Edit", index)}
+                                >
+                                  <p className="font-Montserrat text-sm md:text-base font-medium">
+                                    {contextData.data.websites[link].title}
+                                  </p>
+                                  <p className="font-Montserrat text-xs md:text-sm font-normal mt-[2px]">
+                                    {contextData.data.websites[link].link}
+                                  </p>
+                                </div>
+                                <div className="flex justify-center items-center">
+                                  <span
+                                    className={
+                                      index === 0
+                                        ? "disableUpDownBtn upDownBtn text-xl cursor-pointer mr-3"
+                                        : "upDownBtn text-xl cursor-pointer mr-3"
+                                    }
+                                    onClick={() => linkUpHandler(index)}
+                                  >
+                                    <BsCaretUp />
+                                  </span>
+                                  <span
+                                    className={
+                                      index ===
+                                      Object.keys(contextData.data.websites)
+                                        .length -
+                                        1
+                                        ? "disableUpDownBtn upDownBtn text-xl cursor-pointer"
+                                        : "upDownBtn text-xl cursor-pointer"
+                                    }
+                                    onClick={() => linkDownHandler(index)}
+                                  >
+                                    <BsCaretDown />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </Draggable>
+                      )
+                    )}
+                  {provided.placeholder}
                 </div>
-                <div className="flex justify-center items-center">
-                  <span
-                    className={
-                      index === 0
-                        ? "disableUpDownBtn upDownBtn text-xl cursor-pointer mr-3"
-                        : "upDownBtn text-xl cursor-pointer mr-3"
-                    }
-                    onClick={() => linkUpHandler(index)}
-                  >
-                    <BsCaretUp />
-                  </span>
-                  <span
-                    className={
-                      index ===
-                      Object.keys(contextData.data.websites).length - 1
-                        ? "disableUpDownBtn upDownBtn text-xl cursor-pointer"
-                        : "upDownBtn text-xl cursor-pointer"
-                    }
-                    onClick={() => linkDownHandler(index)}
-                  >
-                    <BsCaretDown />
-                  </span>
-                </div>
-              </div>
-            ))}
+              )}
+            </Droppable>
+          </DragDropContext>
         </>
       )}
       {popup.state && (
@@ -185,7 +249,7 @@ const Other = () => {
                 <IoClose color="black" fontSize={26} />
               </button>
             </div>
-            <div className="w-[90%] md:w-[70%] mx-auto my-6">
+            <div className="w-[90%] md:w-[80%] mx-auto my-6">
               <label className="font-Montserrat font-medium text-[12px] md:text-sm leading-8">
                 Website Title:
               </label>
@@ -207,7 +271,7 @@ const Other = () => {
                 }
               />
               <button
-                className="bg-emerald-400 text-slate-950 font-Montserrat px-2 md:px-3 py-1 text-sm md:text-base font-semibold rounded mt-4"
+                className="bg-emerald-400 text-slate-950 font-Montserrat px-2 md:px-3 py-2 text-sm md:text-base font-semibold rounded mt-4"
                 onClick={addEditWebsiteHandler}
               >
                 {popup.type} Website
