@@ -72,7 +72,11 @@ const UserLink = () => {
       const year = String(currentDate.getFullYear()).slice(-2);
       const encodedDate = `${day}-${month}-${year}`;
       const analyticsRef = doc(db, "Analytics", uid);
-      await setDoc(analyticsRef, { [encodedDate]: 1 }, { merge: true });
+      await setDoc(
+        analyticsRef,
+        { [encodedDate]: increment(1) },
+        { merge: true }
+      );
       setCount((prev) => prev + 1);
     } catch (error) {
       console.error("Error updating analytics:", error);
