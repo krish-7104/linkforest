@@ -23,7 +23,6 @@ const Dashboard = () => {
   useEffect(() => {
     setLoading(true);
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
       if (!user) {
         navigate("/");
       } else {
