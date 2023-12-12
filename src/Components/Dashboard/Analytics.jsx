@@ -108,30 +108,30 @@ const Analytics = () => {
           <div className="w-full flex-col bg-slate-100 mx-5 px-3 py-2 rounded-md shadow">
             <p className="font-Montserrat text-sm mb-1 medium">Today's</p>
             <p className="font-Montserrat text-lg font-semibold">
-              {analyticsData.today}
+              {analyticsData.today ? analyticsData.today : 0}
             </p>
           </div>
           <div className="w-full flex-col bg-slate-100 mx-5 px-3 py-2 rounded-md shadow">
             <p className="font-Montserrat text-sm mb-1 medium">Yesterday's</p>
             <p className="font-Montserrat text-lg font-semibold">
-              {analyticsData.yesterday}
+              {analyticsData.yesterday ? analyticsData.yesterday : 0}
             </p>
           </div>
           <div className="w-full flex-col bg-slate-100 mx-5 px-3 py-2 rounded-md shadow">
             <p className="font-Montserrat text-sm mb-1 medium">This Year's</p>
             <p className="font-Montserrat text-lg font-semibold">
-              {analyticsData.year}
+              {analyticsData.year ? analyticsData.year : 0}
             </p>
           </div>
           <div className="w-full flex-col bg-slate-100 mx-5 px-3 py-2 rounded-md shadow">
             <p className="font-Montserrat text-sm mb-1 medium">All Time's</p>
             <p className="font-Montserrat text-lg font-semibold">
-              {analyticsData.total}
+              {analyticsData.total ? analyticsData.total : 0}
             </p>
           </div>
         </section>
       )}
-      {social && (
+      {social && Object.entries(social).length !== 0 && (
         <section className="mt-6 w-full">
           <p className="font-Montserrat font-bold my-4 text-xl">
             Socials Links
@@ -147,7 +147,8 @@ const Analytics = () => {
           </ul>
         </section>
       )}
-      {links && (
+
+      {social && Object.entries(social).length !== 0 && (
         <section className="mt-6 w-full">
           <p className="font-Montserrat font-bold my-4 text-xl">Websites</p>
           <section className="flex w-full flex-wrap my-2">
